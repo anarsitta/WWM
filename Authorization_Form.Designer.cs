@@ -163,6 +163,7 @@ namespace WWM
             this.Controls.Add(this.materialCard2);
             this.Controls.Add(this.materialCard1);
             this.Name = "Authorization_Form";
+            this.Sizable = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Authorization_Form_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.materialCard1.ResumeLayout(false);

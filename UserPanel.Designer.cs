@@ -38,6 +38,7 @@ namespace WWM
             this.ClientSize = new System.Drawing.Size(585, 450);
             this.Name = "UserPanel";
             this.Text = "UserPanel";
+            this.Load += new System.EventHandler(this.UserPanel_Load);
             this.ResumeLayout(false);
 
         }

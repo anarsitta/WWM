@@ -16,5 +16,12 @@ namespace WWM
         {
             InitializeComponent();
         }
+
+        private void UserPanel_Load(object sender, EventArgs e)
+        {
+            Authorization_Form auth = new Authorization_Form();
+            UserPanel up = new UserPanel();
+            up.Text = Convert.ToString(auth.account[2]);
+        }
     }
 }

@@ -408,6 +408,7 @@ namespace WWM
             this.Controls.Add(this.materialCard2);
             this.Controls.Add(this.materialCard1);
             this.Name = "Registration_Form";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WWM/Registration";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Registration_Form_FormClosing);

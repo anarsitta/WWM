@@ -21,6 +21,8 @@ namespace WWM
         public SQLiteConnection m_dbConn = new SQLiteConnection();
         public SQLiteCommand m_sqlCmd = new SQLiteCommand();
 
+        public SQLiteDataReader account;
+
         public Authorization_Form()
         {
             InitializeComponent();
@@ -45,16 +47,45 @@ namespace WWM
             }
         }
 
-        private void EnterButton_Click(object sender, EventArgs e)
+        public void EnterButton_Click(object sender, EventArgs e)
         {
-            using (var m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;"))
+            try
             {
-                m_dbConn.Open();
-                m_sqlCmd.Connection = m_dbConn;
+                if (materialTextBox2.Text.Length > 4 && materialTextBox1.Text.Length > 4)
+                {
+                    using (var m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;"))
+                    {
+                        m_dbConn.Open();
+                        m_sqlCmd.Connection = m_dbConn;
 
-                m_sqlCmd.CommandText = "SELECT";
-                m_sqlCmd.ExecuteReader();
+                        SQLiteCommand command = new SQLiteCommand(@"SELECT user_login, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access FROM Users WHERE user_login = '" + materialTextBox2.Text + "' AND user_password = '" + materialTextBox1.Text + "';", m_dbConn);
+                        account = command.ExecuteReader();
 
+                        //ioyhf Переменные для переноса
+
+                        account.Read();
+                        if (Convert.ToString(account[7]) == "Администратор")
+                        {
+                            AdminPanel ap = new AdminPanel();
+                            ap.Show();
+                            Hide();
+                        }
+                        else
+                        {
+                            UserPanel up = new UserPanel();
+                            up.Show();
+                            Hide();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Логин или пароль должны быть больше 4-х символов.\nВведите другие данные и повторите попытку.", "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Введённые вами данные отсутствуют.\nВведите другие данные и повторите попытку.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
