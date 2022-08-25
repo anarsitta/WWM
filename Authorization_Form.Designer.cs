@@ -162,6 +162,7 @@ namespace WWM
             this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.materialCard2);
             this.Controls.Add(this.materialCard1);
+            this.MaximizeBox = false;
             this.Name = "Authorization_Form";
             this.Sizable = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Authorization_Form_FormClosing);

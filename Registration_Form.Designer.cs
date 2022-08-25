@@ -407,6 +407,7 @@ namespace WWM
             this.Controls.Add(this.materialButton2);
             this.Controls.Add(this.materialCard2);
             this.Controls.Add(this.materialCard1);
+            this.MaximizeBox = false;
             this.Name = "Registration_Form";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

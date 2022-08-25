@@ -42,6 +42,7 @@ namespace WWM
                 m_dbConn.Open();
                 m_sqlCmd.Connection = m_dbConn;
 
+                //Создание таблицы
                 m_sqlCmd.CommandText = "CREATE TABLE IF NOT EXISTS Users (user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_login TEXT NOT NULL, user_password TEXT NOT NULL, user_email TEXT NOT NULL, user_name TEXT NOT NULL, user_surname TEXT NOT NULL, user_midname TEXT NOT NULL, user_group TEXT NOT NULL, user_journum INTEGER, user_access TEXT NOT NULL DEFAULT ('Пользователь'), UNIQUE (\"user_login\") ON CONFLICT IGNORE)";
                 m_sqlCmd.ExecuteNonQuery();
             }
@@ -49,10 +50,13 @@ namespace WWM
 
         public void EnterButton_Click(object sender, EventArgs e)
         {
+            //Вывод ошибки в случае отсутствия записи
             try
             {
+                //Проверка количества символов
                 if (materialTextBox2.Text.Length > 4 && materialTextBox1.Text.Length > 4)
                 {
+                    //Установка связи с БД
                     using (var m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;"))
                     {
                         m_dbConn.Open();
@@ -61,34 +65,38 @@ namespace WWM
                         SQLiteCommand command = new SQLiteCommand(@"SELECT user_login, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access FROM Users WHERE user_login = '" + materialTextBox2.Text + "' AND user_password = '" + materialTextBox1.Text + "';", m_dbConn);
                         account = command.ExecuteReader();
 
-                        //ioyhf Переменные для переноса
-
                         account.Read();
+
+                        //Проверка прав аккаунта
                         if (Convert.ToString(account[7]) == "Администратор")
                         {
-                            AdminPanel ap = new AdminPanel();
+                            AdminPanel ap = new AdminPanel(account);
                             ap.Show();
                             Hide();
                         }
                         else
                         {
-                            UserPanel up = new UserPanel();
+                            UserPanel up = new UserPanel(account);
                             up.Show();
                             Hide();
                         }
                     }
                 }
+                //Вывод ошибки количества символов
                 else
                 {
                     MessageBox.Show("Логин или пароль должны быть больше 4-х символов.\nВведите другие данные и повторите попытку.", "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            //Вывод ошибки отсутствия записи
             catch
             {
                 MessageBox.Show("Введённые вами данные отсутствуют.\nВведите другие данные и повторите попытку.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        //Открытие формы регистрации
         private void RegistrationButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -96,6 +104,7 @@ namespace WWM
             reg_f.Show();
         }
 
+        //Событие закрытия формы
         private void Authorization_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

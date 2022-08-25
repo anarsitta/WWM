@@ -13,18 +13,15 @@ using System.Data.SQLite;
 
 namespace WWM
 {
-    public partial class UserPanel : MaterialForm
+    public partial class Settings : MaterialForm
     {
-        public System.Data.SQLite.SQLiteDataReader acc;
-        public UserPanel(System.Data.SQLite.SQLiteDataReader account)
+        public Settings()
         {
             InitializeComponent();
-            acc = account;
         }
 
-        private void UserPanel_Load(object sender, EventArgs e)
+        private void Settings_Load(object sender, EventArgs e)
         {
-            Authorization_Form auth = new Authorization_Form();
 
         }
     }

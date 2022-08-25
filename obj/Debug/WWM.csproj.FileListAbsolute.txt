@@ -23,3 +23,5 @@ C:\Users\anarc\Desktop\WWM\bin\Debug\lkt-US\WWM.resources.dll
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.Authorization_Form.lkt-US.resources
 C:\Users\anarc\Desktop\WWM\obj\Debug\lkt-US\WWM.resources.dll
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.UserPanel.resources
+C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.AdminPanel.resources
+C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.Settings.resources

@@ -80,6 +80,12 @@
     <Compile Include="Authorization_Form.Designer.cs">
       <DependentUpon>Authorization_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registration_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,11 +100,17 @@
     <Compile Include="UserPanel.Designer.cs">
       <DependentUpon>UserPanel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminPanel.resx">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Authorization_Form.lkt-US.resx">
       <DependentUpon>Authorization_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Authorization_Form.resx">
       <DependentUpon>Authorization_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

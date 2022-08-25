@@ -23,6 +23,7 @@ namespace WWM
             InitializeComponent();
         }
 
+        //Событие закрытия формы
         private void Registration_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Authorization_Form auth_f = new Authorization_Form();
@@ -48,39 +49,50 @@ namespace WWM
                     //Проверка основных данных
                     if (login_box.Text.Length > 4 && password_box.Text.Length > 4)
                     {
-                        //Создание курсора
-                        using (var m_dbConn = new SQLiteConnection("Data Source=" + auth.dbFileName + ";Version=3;"))
+                        //Проверка номера в журнале
+                        if (Convert.ToInt32(numbes_box.Text) <= 30 && Convert.ToInt32(numbes_box.Text) > 0)
                         {
 
-                            m_dbConn.Open();
-
-                            //Определение базы данных
-                            m_sqlCmd.Connection = m_dbConn;
-
-                            //Проверка таблицы, чтобы задать роль администратора, если записи отсутствуют
-                            DataTable dTable = new DataTable();
-
-                            SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM Users LIMIT 5", m_dbConn);
-                            adapter.Fill(dTable);
-
-                            //Процесс регистрации
-                            m_sqlCmd.Connection = m_dbConn;
-
-                            //Проверка на первую запись в таблице
-                            if (dTable.Rows.Count == 0)
+                            //Создание курсора
+                            using (var m_dbConn = new SQLiteConnection("Data Source=" + auth.dbFileName + ";Version=3;"))
                             {
-                                role = "Администратор";
-                                MessageBox.Show("Вы являетесь первым пользователем системы.\nВам присвоена роль - 'Администратор'.", "Первая регистрация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
 
-                            //Создание записи
-                            m_sqlCmd.CommandText = "INSERT INTO Users (user_login, user_password, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access) values ('" + login_box.Text + "','" + password_box.Text + "','" + email_box.Text + "','" + name_box.Text + "','" + sourname_box.Text + "','" + thirdname_box.Text + "','" + group_box.Text + "','" + Convert.ToInt32(numbes_box.Text) + "','" + role + "')";
-                            m_sqlCmd.ExecuteNonQuery();
-                        }
+                                m_dbConn.Open();
+
+                                //Определение базы данных
+                                m_sqlCmd.Connection = m_dbConn;
+
+                                //Проверка таблицы, чтобы задать роль администратора, если записи отсутствуют
+                                DataTable dTable = new DataTable();
+
+                                SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT * FROM Users LIMIT 5", m_dbConn);
+                                adapter.Fill(dTable);
+
+                                //Процесс регистрации
+                                m_sqlCmd.Connection = m_dbConn;
+
+                                //Проверка на первую запись в таблице
+                                if (dTable.Rows.Count == 0)
+                                {
+                                    role = "Администратор";
+                                    MessageBox.Show("Вы являетесь первым пользователем системы.\nВам присвоена роль - 'Администратор'.", "Первая регистрация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+
+                                //Создание записи
+                                m_sqlCmd.CommandText = "INSERT INTO Users (user_login, user_password, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access) values ('" + login_box.Text + "','" + password_box.Text + "','" + email_box.Text + "','" + name_box.Text + "','" + sourname_box.Text + "','" + thirdname_box.Text + "','" + group_box.Text + "','" + numbes_box.Text + "','" + role + "')";
+                                m_sqlCmd.ExecuteNonQuery();
+                            }
 
                         //Окно об успешном создании записи
                         MessageBox.Show("Создание записи прошло успешно!\nТеперь вы пользователь системы.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Close();
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Номер в журнале не может превышать 30.\nПовторите попытку.", "Ошибка ввода номера", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        
                     }
                     else
                     {
@@ -95,11 +107,11 @@ namespace WWM
                     MessageBox.Show("При регистрации все поля должны быть заполнены.\nЗаполните все поля и повторите попытку", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-            }
+        }
             //Предосторожность, чтобы систему точно не сломали
             catch
             {
-                MessageBox.Show("При регистрации все поля должны быть заполнены.\nЗаполните все поля и повторите попытку", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Значение поля \"№ в журнале\" принимает может принимать только цифры.\nЗаполните поле и повторите попытку.", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
