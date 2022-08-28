@@ -363,38 +363,41 @@
   <data name="&gt;&gt;materialCard1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Bookman Old Style, 12pt</value>
+  <data name="materialLabel3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Roboto, 16px</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 14</value>
+  <data name="materialLabel3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="label3.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+  <data name="materialLabel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 10</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>277, 61</value>
+  <data name="materialLabel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 65</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="materialLabel3.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="materialLabel3.Text" xml:space="preserve">
     <value>При отсутствии аккаунта, пройдите регистрацию, нажав на определённую кнопку.</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="materialLabel3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;materialLabel3.Name" xml:space="preserve">
+    <value>materialLabel3</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;materialLabel3.Type" xml:space="preserve">
+    <value>MaterialSkin.Controls.MaterialLabel, MaterialSkin, Version=2.3.1.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;materialLabel3.Parent" xml:space="preserve">
     <value>materialCard2</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;materialLabel3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="materialCard2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 365</value>
+    <value>52, 365</value>
   </data>
   <data name="materialCard2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>14, 14, 14, 14</value>
@@ -403,7 +406,7 @@
     <value>14, 14, 14, 14</value>
   </data>
   <data name="materialCard2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 89</value>
+    <value>277, 89</value>
   </data>
   <data name="materialCard2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -457,7 +460,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>387, 480</value>
+    <value>391, 480</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

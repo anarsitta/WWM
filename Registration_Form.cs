@@ -15,20 +15,25 @@ namespace WWM
 {
     public partial class Registration_Form : MaterialForm
     {
-        public SQLiteConnection m_dbConn = new SQLiteConnection();
+        //Объявление глобальных переменных БД
         public SQLiteCommand m_sqlCmd = new SQLiteCommand();
 
+        //Объявление глобальной переменной темы
         public MaterialSkinManager ThemeManager = MaterialSkinManager.Instance;
 
         public Registration_Form()
         {
+
             InitializeComponent();
-            Settings s = new Settings("bruh", "bruh", this);
+
+            //Отправка запроса для проверки значений и темы
+            Settings s = new Settings("bruh", "bruh", "0", this);
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
 
-
+            //Установка значений темы
+            #region Установка_темы
             if (s.themeToggle.Checked)
             {
                 ThemeManager.Theme = MaterialSkinManager.Themes.DARK;
@@ -37,7 +42,6 @@ namespace WWM
             {
                 ThemeManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
-
             if (s.materialRadioButton1.Checked == true)
             {
                 ThemeManager.ColorScheme = new ColorScheme(Primary.Green700, Primary.Green900, Primary.Green500, Accent.Green400, TextShade.WHITE);
@@ -50,6 +54,7 @@ namespace WWM
             {
                 ThemeManager.ColorScheme = new ColorScheme(Primary.Amber700, Primary.Amber900, Primary.Amber500, Accent.Amber400, TextShade.WHITE);
             }
+            #endregion
         }
 
         //Событие закрытия формы
@@ -59,16 +64,19 @@ namespace WWM
             auth_f.Show();
         }
 
+        //Кнопка вернуться
         private void materialButton1_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        //Кнопка входа в систему
         private void EnterButton_Click(object sender, EventArgs e)
         {
             //Ссылка на класс 2 формы для доступа к компонентам и переменным
             Authorization_Form auth = new Authorization_Form();
             string role = "Пользователь";
+
             //Отлов ошибок
             try
             {
@@ -86,6 +94,7 @@ namespace WWM
                             using (var m_dbConn = new SQLiteConnection("Data Source=" + auth.dbFileName + ";Version=3;"))
                             {
 
+                                //Открытие БД
                                 m_dbConn.Open();
 
                                 //Определение базы данных
@@ -119,8 +128,8 @@ namespace WWM
 
                         else
                         {
+                            //Вывод в случае превышении числа 30
                             MaterialMessageBox.Show("Номер в журнале не может превышать 30.\nПовторите попытку.", "Ошибка ввода номера", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            
                         }
                         
                     }
@@ -128,7 +137,6 @@ namespace WWM
                     {
                         //Проверка на краткость вводимых данных
                         MaterialMessageBox.Show("Логин или пароль должны быть длинее 4-х символов.", "Краткость логина или пароля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        
                     }
                 }
 
@@ -136,19 +144,17 @@ namespace WWM
                 {
                     //Проверка полей
                     MaterialMessageBox.Show("При регистрации все поля должны быть заполнены.\nЗаполните все поля и повторите попытку", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    
                 }
-
         }
             //Предосторожность, чтобы систему точно не сломали
             catch
             {
                 MaterialMessageBox.Show("Значение поля \"№ в журнале\" принимает может принимать только цифры.\nЗаполните поле и повторите попытку.", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                
             }
-
         }
 
+        //Запрет ввода определённых символов
+        #region Ввод_значений
         private void group_box_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == ' ') e.Handled = true;
@@ -173,5 +179,6 @@ namespace WWM
         {
             if (e.KeyChar == ' ') e.Handled = true;
         }
+        #endregion
     }
 }

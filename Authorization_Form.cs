@@ -16,19 +16,21 @@ namespace WWM
 {
     public partial class Authorization_Form : MaterialForm
     {
-        //Создание курсора и подключения
+        //Глобальные переменные БД
         public String dbFileName = "MainDataBase.sqlite";
-        public SQLiteConnection m_dbConn = new SQLiteConnection();
         public SQLiteCommand m_sqlCmd = new SQLiteCommand();
-
         public SQLiteDataReader account;
 
+        //Переменная темы
         public MaterialSkinManager ThemeManager = MaterialSkinManager.Instance;
 
         public Authorization_Form()
         {
             InitializeComponent();
-            Settings s = new Settings("bruh", "bruh", this);
+
+            //Установка значений темы
+            #region Установка_темы
+            Settings s = new Settings("bruh", "bruh", "0", this);
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -54,11 +56,13 @@ namespace WWM
             {
                 ThemeManager.ColorScheme = new ColorScheme(Primary.Amber700, Primary.Amber900, Primary.Amber500, Accent.Amber400, TextShade.WHITE);
             }
-            label3.Font = new Font("Bookman Old Style", 12);
+            #endregion
         }
 
+        //Прогрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Создание курсора и обращение к БД
             using (var m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;"))
             {
                 //Создание БД в случае ее отсутствия
@@ -77,6 +81,7 @@ namespace WWM
             }
         }
 
+        //Кнопка входа в систему
         public void EnterButton_Click(object sender, EventArgs e)
         {
             //Вывод ошибки в случае отсутствия записи
@@ -85,7 +90,7 @@ namespace WWM
                 //Проверка количества символов
                 if (materialTextBox2.Text.Length > 4 && materialTextBox1.Text.Length > 4)
                 {
-                    //Установка связи с БД
+                    //Создание курсора и обращение к БД
                     using (var m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;"))
                     {
                         m_dbConn.Open();
@@ -96,11 +101,10 @@ namespace WWM
 
                         account.Read();
                         
-                        
-
                         //Проверка прав аккаунта
                         if (Convert.ToString(account[8]) == "Администратор")
                         {
+                            //Открытие формы администратора
                             AdminPanel ap = new AdminPanel(account);
                             ap.Show();
                             Hide();
@@ -108,6 +112,7 @@ namespace WWM
                         }
                         else
                         {
+                            //Открытие формы пользователя
                             UserPanel up = new UserPanel(account);
                             up.Show();
                             Hide();
@@ -115,19 +120,20 @@ namespace WWM
                         }
                     }
                 }
+
                 //Вывод ошибки количества символов
                 else
                 {
                     MaterialMessageBox.Show("Логин или пароль должны быть больше 4-х символов.\nВведите другие данные и повторите попытку.", "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-        }
+            }
 
             //Вывод ошибки отсутствия записи
             catch
             {
                 MaterialMessageBox.Show("Введённые вами данные отсутствуют.\nВведите другие данные и повторите попытку.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-}
+        }
 
         //Открытие формы регистрации
         private void RegistrationButton_Click(object sender, EventArgs e)

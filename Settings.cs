@@ -11,20 +11,37 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Data.SQLite;
 
+
 namespace WWM
 {
     public partial class Settings : MaterialForm
     {
+		//Переменные текста (пиши класс ленивый)
         public string user_name;
         public string user_midname;
+		public string user_id1;
+
+		//Переменные формы
 		public MaterialForm form;
+		public Authorization_Form af;
+
+		//Переменная темы
 		public MaterialSkinManager ThemeManager = MaterialSkinManager.Instance;
 
-		public Settings(string name, string midname, MaterialForm mf)
+		//Строка запроса
+		public SQLiteCommand m_sqlCmd = new SQLiteCommand();
+
+		//Конструктор формы
+		public Settings(string name, string midname, string user_id, MaterialForm mf)
         {
+			//Обозначение глобальных переменных
             user_name = name;
             user_midname = midname;
-            InitializeComponent();
+			user_id1 = user_id;
+
+			//Установка значений темы
+			#region Установка_темы
+			InitializeComponent();
 
 			var materialSkinManager = MaterialSkinManager.Instance;
 			materialSkinManager.AddFormToManage(this);
@@ -53,16 +70,20 @@ namespace WWM
 			{
 				ThemeManager.ColorScheme = new ColorScheme(Primary.Amber700, Primary.Amber900, Primary.Amber500, Accent.Amber400, TextShade.WHITE);
 			}
+            #endregion
 
-			form = mf;
+			//Установка глобального значения формы
+            form = mf;
 			
 		}
 
+		//Подгрузка формы
         private void Settings_Load(object sender, EventArgs e)
         {
             this.Text = "WWM/" + user_name + " " + user_midname + "/Настройки";
         }
 
+		//Изменение темы в приложении
         private void themeToggle_CheckedChanged(object sender, EventArgs e)
         {
 			//Проверка на нажатие
@@ -77,6 +98,8 @@ namespace WWM
 
 		}
 
+        //Изменение цвета
+        #region Изменение_цвета
         private void materialRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
 			//Проверка на нажатие
@@ -117,9 +140,12 @@ namespace WWM
 				ThemeManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 			}
 		}
+        #endregion
 
+		//Событие закрытия формы
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
+			//Определение с какой формы была открыта форма настроек и открытие нужной формы
 			if(form.Name == "AdminPanel")
             {
 				form.Refresh();
@@ -131,6 +157,103 @@ namespace WWM
 				form.Show();
             }
 			Properties.Settings.Default.Save();
+		}
+
+		//Изменение логина
+        private void materialButton3_Click(object sender, EventArgs e)
+        {
+			af = new Authorization_Form();
+			try
+            {
+				if (materialTextBox1.Text.Length >= 4)
+				{
+					//Запрос в БД
+					using (var m_dbConn = new SQLiteConnection("Data Source=" + af.dbFileName + ";Version=3;"))
+					{
+						m_dbConn.Open();
+
+						m_sqlCmd.Connection = m_dbConn;
+
+						SQLiteCommand command = new SQLiteCommand(@"UPDATE Users SET user_login = '" + materialTextBox1.Text + "' WHERE user_id = '" + user_id1 + "'", m_dbConn);
+						command.ExecuteNonQuery();
+					}
+
+					MaterialMessageBox.Show("Логин успешно изменён.", "Изменение логина", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MaterialMessageBox.Show("Логин должен быть больше 4-х символов.", "Изменение логина", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+			}
+			catch
+            {
+				MaterialMessageBox.Show("Возникла некоторая ошибка.\nЛогин не был изменён.", "Ошибка изменения логина", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}			
+			
+		}
+
+		//Изменение пароля
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+			af = new Authorization_Form();
+			try
+			{
+				if (materialTextBox2.Text.Length >= 4)
+				{
+					//Запрос в БД
+					using (var m_dbConn = new SQLiteConnection("Data Source=" + af.dbFileName + ";Version=3;"))
+					{
+						m_dbConn.Open();
+
+						m_sqlCmd.Connection = m_dbConn;
+
+						SQLiteCommand command = new SQLiteCommand(@"UPDATE Users SET user_password = '" + materialTextBox2.Text + "' WHERE user_id = '" + user_id1 + "'", m_dbConn);
+						command.ExecuteNonQuery();
+					}
+
+					MaterialMessageBox.Show("Пароль успешно изменён.", "Изменение пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MaterialMessageBox.Show("Пароль должен быть больше 4-х символов.", "Изменение пароля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+			}
+			catch
+			{
+				MaterialMessageBox.Show("Возникла некоторая ошибка.\nПароль не был изменён.", "Ошибка изменения пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		//Изменение почты
+        private void materialButton11_Click(object sender, EventArgs e)
+        {
+			af = new Authorization_Form();
+			try
+			{
+				if (materialTextBox3.Text.Length >= 4)
+				{
+					//Запрос в БД
+					using (var m_dbConn = new SQLiteConnection("Data Source=" + af.dbFileName + ";Version=3;"))
+					{
+						m_dbConn.Open();
+
+						m_sqlCmd.Connection = m_dbConn;
+
+						SQLiteCommand command = new SQLiteCommand(@"UPDATE Users SET user_email = '" + materialTextBox3.Text + "' WHERE user_id = '" + user_id1 + "'", m_dbConn);
+						command.ExecuteNonQuery();
+					}
+
+					MaterialMessageBox.Show("Почта успешно изменена.", "Изменение почты", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				else
+				{
+					MaterialMessageBox.Show("Почта должна быть больше 4-х символов.", "Изменение почты", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				}
+			}
+			catch
+			{
+				MaterialMessageBox.Show("Возникла некоторая ошибка.\nПочта не была изменёна.", "Ошибка изменения почты", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
     }
 }
