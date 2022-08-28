@@ -34,12 +34,13 @@ namespace WWM
             this.EnterButton = new MaterialSkin.Controls.MaterialButton();
             this.RegistrationButton = new MaterialSkin.Controls.MaterialButton();
             this.materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
             this.label3 = new System.Windows.Forms.Label();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
             this.SuspendLayout();
@@ -100,11 +101,6 @@ namespace WWM
             this.materialTextBox2.Tag = "";
             this.materialTextBox2.TrailingIcon = null;
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
@@ -113,12 +109,13 @@ namespace WWM
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.materialLabel1);
+            this.materialCard1.Controls.Add(this.materialLabel2);
             this.materialCard1.Controls.Add(this.RegistrationButton);
             this.materialCard1.Controls.Add(this.EnterButton);
             this.materialCard1.Controls.Add(this.materialTextBox1);
             this.materialCard1.Controls.Add(this.label2);
             this.materialCard1.Controls.Add(this.materialTextBox2);
-            this.materialCard1.Controls.Add(this.label1);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             resources.ApplyResources(this.materialCard1, "materialCard1");
@@ -155,6 +152,22 @@ namespace WWM
             this.materialButton1.UseAccentColor = false;
             this.materialButton1.UseVisualStyleBackColor = true;
             // 
+            // materialLabel2
+            // 
+            this.materialLabel2.Depth = 0;
+            resources.ApplyResources(this.materialLabel2, "materialLabel2");
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            resources.ApplyResources(this.materialLabel1, "materialLabel1");
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            // 
             // Authorization_Form
             // 
             resources.ApplyResources(this, "$this");
@@ -179,12 +192,13 @@ namespace WWM
         private MaterialSkin.Controls.MaterialButton EnterButton;
         private MaterialSkin.Controls.MaterialButton RegistrationButton;
         private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private System.Windows.Forms.Label label3;
         private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
 

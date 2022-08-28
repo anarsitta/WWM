@@ -1,7 +1,6 @@
 C:\Users\anarc\Desktop\WWM\bin\Debug\WWM.exe.config
 C:\Users\anarc\Desktop\WWM\bin\Debug\WWM.exe
 C:\Users\anarc\Desktop\WWM\bin\Debug\WWM.pdb
-C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.csproj.AssemblyReference.cache
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.Properties.Resources.resources
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.csproj.GenerateResource.cache
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.csproj.CoreCompileInputs.cache
@@ -25,3 +24,4 @@ C:\Users\anarc\Desktop\WWM\obj\Debug\lkt-US\WWM.resources.dll
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.UserPanel.resources
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.AdminPanel.resources
 C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.Settings.resources
+C:\Users\anarc\Desktop\WWM\obj\Debug\WWM.csproj.AssemblyReference.cache

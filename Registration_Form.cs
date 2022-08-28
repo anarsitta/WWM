@@ -18,9 +18,38 @@ namespace WWM
         public SQLiteConnection m_dbConn = new SQLiteConnection();
         public SQLiteCommand m_sqlCmd = new SQLiteCommand();
 
+        public MaterialSkinManager ThemeManager = MaterialSkinManager.Instance;
+
         public Registration_Form()
         {
             InitializeComponent();
+            Settings s = new Settings("bruh", "bruh", this);
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+
+
+            if (s.themeToggle.Checked)
+            {
+                ThemeManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                ThemeManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+
+            if (s.materialRadioButton1.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Green700, Primary.Green900, Primary.Green500, Accent.Green400, TextShade.WHITE);
+            }
+            else if (s.materialRadioButton2.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Blue700, Primary.Blue900, Primary.Blue500, Accent.Blue400, TextShade.WHITE);
+            }
+            else if (s.materialRadioButton3.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Amber700, Primary.Amber900, Primary.Amber500, Accent.Amber400, TextShade.WHITE);
+            }
         }
 
         //Событие закрытия формы
@@ -83,38 +112,66 @@ namespace WWM
                                 m_sqlCmd.ExecuteNonQuery();
                             }
 
-                        //Окно об успешном создании записи
-                        MessageBox.Show("Создание записи прошло успешно!\nТеперь вы пользователь системы.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Close();
+                            //Окно об успешном создании записи
+                            MaterialMessageBox.Show("Создание записи прошло успешно!\nТеперь вы пользователь системы.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Close();
                         }
 
                         else
                         {
-                            MessageBox.Show("Номер в журнале не может превышать 30.\nПовторите попытку.", "Ошибка ввода номера", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MaterialMessageBox.Show("Номер в журнале не может превышать 30.\nПовторите попытку.", "Ошибка ввода номера", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            
                         }
                         
                     }
                     else
                     {
                         //Проверка на краткость вводимых данных
-                        MessageBox.Show("Логин или пароль должны быть длинее 4-х символов.", "Краткость логина или пароля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MaterialMessageBox.Show("Логин или пароль должны быть длинее 4-х символов.", "Краткость логина или пароля", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        
                     }
                 }
 
                 else
                 {
                     //Проверка полей
-                    MessageBox.Show("При регистрации все поля должны быть заполнены.\nЗаполните все поля и повторите попытку", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MaterialMessageBox.Show("При регистрации все поля должны быть заполнены.\nЗаполните все поля и повторите попытку", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    
                 }
 
         }
             //Предосторожность, чтобы систему точно не сломали
             catch
             {
-                MessageBox.Show("Значение поля \"№ в журнале\" принимает может принимать только цифры.\nЗаполните поле и повторите попытку.", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MaterialMessageBox.Show("Значение поля \"№ в журнале\" принимает может принимать только цифры.\nЗаполните поле и повторите попытку.", "Введены не все значения", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
             }
 
         }
 
+        private void group_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') e.Handled = true;
+        }
+
+        private void email_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') e.Handled = true;
+        }
+
+        private void password_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') e.Handled = true;
+        }
+
+        private void login_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') e.Handled = true;
+        }
+
+        private void sourname_box_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ') e.Handled = true;
+        }
     }
 }

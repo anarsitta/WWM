@@ -32,25 +32,25 @@ namespace WWM
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.group_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.email_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.password_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.login_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            this.label9 = new System.Windows.Forms.Label();
             this.EnterButton = new MaterialSkin.Controls.MaterialButton();
             this.numbes_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.thirdname_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.sourname_box = new MaterialSkin.Controls.MaterialTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.name_box = new MaterialSkin.Controls.MaterialTextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
             this.SuspendLayout();
@@ -58,15 +58,15 @@ namespace WWM
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.materialLabel4);
+            this.materialCard1.Controls.Add(this.materialLabel3);
+            this.materialCard1.Controls.Add(this.materialLabel1);
+            this.materialCard1.Controls.Add(this.materialLabel2);
             this.materialCard1.Controls.Add(this.materialButton1);
             this.materialCard1.Controls.Add(this.group_box);
-            this.materialCard1.Controls.Add(this.label3);
             this.materialCard1.Controls.Add(this.email_box);
-            this.materialCard1.Controls.Add(this.label4);
             this.materialCard1.Controls.Add(this.password_box);
-            this.materialCard1.Controls.Add(this.label2);
             this.materialCard1.Controls.Add(this.login_box);
-            this.materialCard1.Controls.Add(this.label1);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard1.Location = new System.Drawing.Point(17, 78);
@@ -117,16 +117,7 @@ namespace WWM
             this.group_box.TabIndex = 6;
             this.group_box.Text = "";
             this.group_box.TrailingIcon = null;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(16, 330);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 26);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Группа:";
+            this.group_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.group_box_KeyPress);
             // 
             // email_box
             // 
@@ -145,16 +136,7 @@ namespace WWM
             this.email_box.Tag = "";
             this.email_box.Text = "";
             this.email_box.TrailingIcon = null;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(16, 225);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 28);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Почта:";
+            this.email_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.email_box_KeyPress);
             // 
             // password_box
             // 
@@ -173,16 +155,7 @@ namespace WWM
             this.password_box.TabIndex = 0;
             this.password_box.Text = "";
             this.password_box.TrailingIcon = null;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(17, 118);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 26);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Пароль:";
+            this.password_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.password_box_KeyPress);
             // 
             // login_box
             // 
@@ -201,30 +174,21 @@ namespace WWM
             this.login_box.Tag = "";
             this.login_box.Text = "";
             this.login_box.TrailingIcon = null;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(17, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 28);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Логин:";
+            this.login_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.login_box_KeyPress);
             // 
             // materialCard2
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard2.Controls.Add(this.label9);
+            this.materialCard2.Controls.Add(this.materialLabel8);
+            this.materialCard2.Controls.Add(this.materialLabel7);
+            this.materialCard2.Controls.Add(this.materialLabel6);
+            this.materialCard2.Controls.Add(this.materialLabel5);
             this.materialCard2.Controls.Add(this.EnterButton);
             this.materialCard2.Controls.Add(this.numbes_box);
-            this.materialCard2.Controls.Add(this.label5);
             this.materialCard2.Controls.Add(this.thirdname_box);
-            this.materialCard2.Controls.Add(this.label6);
             this.materialCard2.Controls.Add(this.sourname_box);
             this.materialCard2.Controls.Add(this.label7);
             this.materialCard2.Controls.Add(this.name_box);
-            this.materialCard2.Controls.Add(this.label8);
             this.materialCard2.Depth = 0;
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard2.Location = new System.Drawing.Point(353, 78);
@@ -234,16 +198,6 @@ namespace WWM
             this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard2.Size = new System.Drawing.Size(319, 486);
             this.materialCard2.TabIndex = 10;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(17, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 28);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "Фамилия:";
             // 
             // EnterButton
             // 
@@ -286,16 +240,6 @@ namespace WWM
             this.numbes_box.Text = "";
             this.numbes_box.TrailingIcon = null;
             // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(16, 330);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(195, 26);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "№ в журнале:";
-            // 
             // thirdname_box
             // 
             this.thirdname_box.AnimateReadOnly = false;
@@ -313,16 +257,7 @@ namespace WWM
             this.thirdname_box.Tag = "";
             this.thirdname_box.Text = "";
             this.thirdname_box.TrailingIcon = null;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(16, 225);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 28);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Отчество:";
+            this.thirdname_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.group_box_KeyPress);
             // 
             // sourname_box
             // 
@@ -340,6 +275,7 @@ namespace WWM
             this.sourname_box.TabIndex = 0;
             this.sourname_box.Text = "";
             this.sourname_box.TrailingIcon = null;
+            this.sourname_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sourname_box_KeyPress);
             // 
             // label7
             // 
@@ -368,16 +304,7 @@ namespace WWM
             this.name_box.Tag = "";
             this.name_box.Text = "";
             this.name_box.TrailingIcon = null;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(17, 116);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 28);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Имя:";
+            this.name_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.group_box_KeyPress);
             // 
             // materialButton2
             // 
@@ -398,6 +325,102 @@ namespace WWM
             this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton2.UseAccentColor = false;
             this.materialButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel2.Location = new System.Drawing.Point(18, 11);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel2.TabIndex = 23;
+            this.materialLabel2.Text = "Логин:";
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel1.Location = new System.Drawing.Point(18, 114);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel1.TabIndex = 24;
+            this.materialLabel1.Text = "Пароль:";
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel3.Location = new System.Drawing.Point(18, 225);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel3.TabIndex = 25;
+            this.materialLabel3.Text = "Почта:";
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel4.Location = new System.Drawing.Point(18, 330);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel4.TabIndex = 26;
+            this.materialLabel4.Text = "Группа:";
+            // 
+            // materialLabel5
+            // 
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel5.Location = new System.Drawing.Point(17, 11);
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            this.materialLabel5.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel5.TabIndex = 23;
+            this.materialLabel5.Text = "Фамилия:";
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel6.Location = new System.Drawing.Point(17, 114);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel6.TabIndex = 24;
+            this.materialLabel6.Text = "Имя:";
+            // 
+            // materialLabel7
+            // 
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel7.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel7.Location = new System.Drawing.Point(17, 225);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(126, 28);
+            this.materialLabel7.TabIndex = 25;
+            this.materialLabel7.Text = "Отчество:";
+            // 
+            // materialLabel8
+            // 
+            this.materialLabel8.Depth = 0;
+            this.materialLabel8.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel8.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel8.Location = new System.Drawing.Point(16, 330);
+            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel8.Name = "materialLabel8";
+            this.materialLabel8.Size = new System.Drawing.Size(166, 28);
+            this.materialLabel8.TabIndex = 26;
+            this.materialLabel8.Text = "№ в журнале:";
             // 
             // Registration_Form
             // 
@@ -423,25 +446,25 @@ namespace WWM
 
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialTextBox group_box;
-        private System.Windows.Forms.Label label3;
         private MaterialSkin.Controls.MaterialTextBox email_box;
-        private System.Windows.Forms.Label label4;
         private MaterialSkin.Controls.MaterialTextBox password_box;
-        private System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialTextBox login_box;
-        private System.Windows.Forms.Label label1;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private MaterialSkin.Controls.MaterialTextBox numbes_box;
-        private System.Windows.Forms.Label label5;
         private MaterialSkin.Controls.MaterialTextBox thirdname_box;
-        private System.Windows.Forms.Label label6;
         private MaterialSkin.Controls.MaterialTextBox sourname_box;
         private System.Windows.Forms.Label label7;
         private MaterialSkin.Controls.MaterialTextBox name_box;
-        private System.Windows.Forms.Label label8;
         private MaterialSkin.Controls.MaterialButton EnterButton;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialButton materialButton2;
-        private System.Windows.Forms.Label label9;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
     }
 }

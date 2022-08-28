@@ -23,9 +23,38 @@ namespace WWM
 
         public SQLiteDataReader account;
 
+        public MaterialSkinManager ThemeManager = MaterialSkinManager.Instance;
+
         public Authorization_Form()
         {
             InitializeComponent();
+            Settings s = new Settings("bruh", "bruh", this);
+
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+
+            if (s.themeToggle.Checked)
+            {
+                ThemeManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                ThemeManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+
+            if (s.materialRadioButton1.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Green700, Primary.Green900, Primary.Green500, Accent.Green400, TextShade.WHITE);
+            }
+            else if (s.materialRadioButton2.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Blue700, Primary.Blue900, Primary.Blue500, Accent.Blue400, TextShade.WHITE);
+            }
+            else if (s.materialRadioButton3.Checked == true)
+            {
+                ThemeManager.ColorScheme = new ColorScheme(Primary.Amber700, Primary.Amber900, Primary.Amber500, Accent.Amber400, TextShade.WHITE);
+            }
+            label3.Font = new Font("Bookman Old Style", 12);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -62,39 +91,43 @@ namespace WWM
                         m_dbConn.Open();
                         m_sqlCmd.Connection = m_dbConn;
 
-                        SQLiteCommand command = new SQLiteCommand(@"SELECT user_login, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access FROM Users WHERE user_login = '" + materialTextBox2.Text + "' AND user_password = '" + materialTextBox1.Text + "';", m_dbConn);
+                        SQLiteCommand command = new SQLiteCommand(@"SELECT user_id, user_login, user_email, user_name, user_surname, user_midname, user_group, user_journum, user_access FROM Users WHERE user_login = '" + materialTextBox2.Text + "' AND user_password = '" + materialTextBox1.Text + "';", m_dbConn);
                         account = command.ExecuteReader();
 
                         account.Read();
+                        
+                        
 
                         //Проверка прав аккаунта
-                        if (Convert.ToString(account[7]) == "Администратор")
+                        if (Convert.ToString(account[8]) == "Администратор")
                         {
                             AdminPanel ap = new AdminPanel(account);
                             ap.Show();
                             Hide();
+                            account.Close();
                         }
                         else
                         {
                             UserPanel up = new UserPanel(account);
                             up.Show();
                             Hide();
+                            account.Close();
                         }
                     }
                 }
                 //Вывод ошибки количества символов
                 else
                 {
-                    MessageBox.Show("Логин или пароль должны быть больше 4-х символов.\nВведите другие данные и повторите попытку.", "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MaterialMessageBox.Show("Логин или пароль должны быть больше 4-х символов.\nВведите другие данные и повторите попытку.", "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+        }
 
             //Вывод ошибки отсутствия записи
             catch
             {
-                MessageBox.Show("Введённые вами данные отсутствуют.\nВведите другие данные и повторите попытку.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MaterialMessageBox.Show("Введённые вами данные отсутствуют.\nВведите другие данные и повторите попытку.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+}
 
         //Открытие формы регистрации
         private void RegistrationButton_Click(object sender, EventArgs e)
